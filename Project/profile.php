@@ -119,4 +119,5 @@ if (isset($_POST["saved"])) {
     <label for="cpw">Confirm Password</label>
     <input type="password" name="confirm"/>
     <input type="submit" name="saved" value="Save Profile"/>
+
 </form>
