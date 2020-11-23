@@ -1,0 +1,162 @@
+/*
+body {
+    font-family: system;
+    font-size: 1.5em;
+}
+
+ul[class="nav"]{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+ background-color: #688dd2;
+}
+
+
+form {
+    padding-right: 50%;
+    padding-left: 2%;
+}
+
+.nav > li {
+    float: left;
+}
+
+.nav > li a {
+    display: block;
+    color: #030008;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.nav > li a:hover {
+    background-color: #da9898;
+}
+
+input, select {
+    width: 400%;
+    padding: 0px 0px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: content-box;
+}
+
+input[type=Save Profile] {
+    width: 100%;
+    background-color: red;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register{ 
+	font-size: 1.5em;
+	width: 200px;	
+	height: 200px;
+	 margin: auto;
+        float: left; 
+       padding: 10; 	
+}
+
+.login{
+	font-size: 1.5em;
+        width: 200px;   
+        height: 200px;
+     	 margin: auto;
+        float: left; 
+       padding: 10;
+	
+}
+
+.home{
+	font-size: 1.5em;
+        width: 200px;   
+        height: 200px;
+         margin: auto;
+        float: left; 
+       padding: 10; 
+}
+
+.profile{
+	font-size: 1.5em;
+        width: 405px;   
+        height: 200px;
+         margin: auto;
+        float: left; 
+       padding: 10;
+       color: #0a0324; 
+}
+*/
+
+body {
+  font-family: Sans-seifs;
+  font-size: 1.5em;   
+}
+
+ul[class="nav"]{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:  #688dd2;
+}
+
+.nav > li {
+  float: left;
+}
+
+.nav > li a {
+  display: block;
+  color: #030008;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.nav > li a:hover {
+  background-color: #da9898;
+}
+
+.register{ 
+	font-size: 1.5em;
+	width: 200px;	
+	height: 200px;
+	 margin: auto;
+        float: left; 
+       padding: 10; 	
+}
+
+.login{
+	font-size: 1.5em;
+        width: 200px;   
+        height: 200px;
+     	 margin: auto;
+        float: left; 
+       padding: 10;
+	
+}
+
+.home{
+	font-size: 1.5em;
+        width: 200px;   
+        height: 200px;
+         margin: auto;
+        float: left; 
+       padding: 10; 
+}
+
+.profile{
+	font-size: 1.5em;
+        width: 200px;   
+        height: 200px;
+         margin: auto;
+        float: left; 
+       padding: 10; 
+}
+
