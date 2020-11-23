@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
 # Project Baseline
 - This directory will be a rough baseline for the projects.
 - It'll show recommended folder structure along with some baseline files to get you started.
 - It's subject to change to periodically check back.
+<<<<<<< HEAD
 =======
 
 # IT202
@@ -22,4 +26,6 @@ git status
 git push origin master
 
 
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
+=======
 >>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26

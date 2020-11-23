@@ -18,6 +18,7 @@ function has_role($role) {
     return false;
 }
 
+<<<<<<< HEAD
 /*
 function get_role(){ //added by Daniel Daszkiewicz, 10/18/2020
     if (is_logged_in() && isset($_SESSION["user"]["roles"])){
@@ -25,6 +26,8 @@ function get_role(){ //added by Daniel Daszkiewicz, 10/18/2020
     }
 }
 */
+=======
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
 function get_username() {
     if (is_logged_in() && isset($_SESSION["user"]["username"])) {
         return $_SESSION["user"]["username"];
@@ -75,6 +78,7 @@ function getMessages() {
     return array();
 }
 
+<<<<<<< HEAD
 
 function getAccountType()
 {
@@ -191,3 +195,8 @@ function accountNumberGenerator(){
 
 ?>
 
+=======
+//end flash
+
+?>
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26

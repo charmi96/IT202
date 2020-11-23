@@ -13,9 +13,13 @@ function getDB(){
             //__DIR__ helps get the correct path regardless of where the file is being called from
             //it gets the absolute path to this file, then we append the relative url (so up a directory and inside lib)
 <<<<<<< HEAD
+<<<<<<< HEAD
             require_once(__DIR__. "/config.php");//pull in our credentials
 =======
             require_once(__DIR__. "/../lib/config.php");//pull in our credentials
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
+=======
+            require_once(__DIR__. "/config.php");//pull in our credentials
 >>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
             //use the variables from config to populate our connection
             $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
@@ -32,6 +36,9 @@ function getDB(){
 }
 ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
+=======
 >>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26

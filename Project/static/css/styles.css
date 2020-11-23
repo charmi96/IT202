@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 /*
 body {
     font-family: system;
     font-size: 1.5em;
+=======
+body {
+    font-family: system;
+    font-size: 1.5em;
+    background-color: #eef3f1;
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
 }
 
 ul[class="nav"]{
@@ -9,7 +16,11 @@ ul[class="nav"]{
     margin: 0;
     padding: 0;
     overflow: hidden;
+<<<<<<< HEAD
  background-color: #688dd2;
+=======
+    background-color: blue;
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
 }
 
 
@@ -24,23 +35,37 @@ form {
 
 .nav > li a {
     display: block;
+<<<<<<< HEAD
     color: #030008;
+=======
+    color: #f3f4fb;
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
     text-align: center;
     padding: 16px;
     text-decoration: none;
 }
 
 .nav > li a:hover {
+<<<<<<< HEAD
     background-color: #da9898;
 }
 
 input, select {
     width: 400%;
     padding: 0px 0px;
+=======
+    background-color: #39ca40;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
+<<<<<<< HEAD
     box-sizing: content-box;
 }
 
@@ -48,6 +73,15 @@ input[type=Save Profile] {
     width: 100%;
     background-color: red;
     color: black;
+=======
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: red;
+    color: blue;
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -55,6 +89,7 @@ input[type=Save Profile] {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .register{ 
 	font-size: 1.5em;
 	width: 200px;	
@@ -160,3 +195,30 @@ ul[class="nav"]{
        padding: 10; 
 }
 
+=======
+input:nth-of-type(1) {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+input:nth-of-type(2) {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+input:nth-of-type(3) {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+input:nth-of-type(4) {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+input:nth-of-type(5) {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+   color: black;
+}
+>>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
