@@ -1,11 +1,13 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
-<form method="POST">
+<div class="login">
+    <form class="login"  method="POST">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required/>
     <label for="p1">Password:</label>
     <input type="password" id="p1" name="password" required/>
     <input type="submit" name="login" value="Login"/>
 </form>
+</div>
 
 <?php
 if (isset($_POST["login"])) {
@@ -72,6 +74,5 @@ SELECT Roles.name FROM Roles JOIN UserRoles on Roles.id = UserRoles.role_id wher
     }
 }
 ?>
-<tr align="center">
- <td colspan="3"><a href="checkout.php?Forgotpassword">Forgot Password?</a></td>
-</tr>
+
+<?php require(__DIR__ . "/partials/flash.php");
