@@ -83,7 +83,3 @@ catch(Exception $e){
     exit("Something went wrong");
 }
 ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26

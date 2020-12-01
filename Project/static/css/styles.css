@@ -1,137 +1,17 @@
-<<<<<<< HEAD
-/*
-body {
-    font-family: system;
-    font-size: 1.5em;
-=======
-body {
-    font-family: system;
-    font-size: 1.5em;
-    background-color: #eef3f1;
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
-}
-
-ul[class="nav"]{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-<<<<<<< HEAD
- background-color: #688dd2;
-=======
-    background-color: blue;
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
-}
-
-
-form {
-    padding-right: 50%;
-    padding-left: 2%;
-}
-
-.nav > li {
-    float: left;
-}
-
-.nav > li a {
-    display: block;
-<<<<<<< HEAD
-    color: #030008;
-=======
-    color: #f3f4fb;
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-}
-
-.nav > li a:hover {
-<<<<<<< HEAD
-    background-color: #da9898;
-}
-
-input, select {
-    width: 400%;
-    padding: 0px 0px;
-=======
-    background-color: #39ca40;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px 20px;
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-<<<<<<< HEAD
-    box-sizing: content-box;
-}
-
-input[type=Save Profile] {
-    width: 100%;
-    background-color: red;
-    color: black;
-=======
-    box-sizing: border-box;
-}
-
-input[type=submit] {
-    width: 100%;
-    background-color: red;
-    color: blue;
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-<<<<<<< HEAD
-.register{ 
-	font-size: 1.5em;
-	width: 200px;	
-	height: 200px;
-	 margin: auto;
-        float: left; 
-       padding: 10; 	
-}
-
-.login{
-	font-size: 1.5em;
-        width: 200px;   
-        height: 200px;
-     	 margin: auto;
-        float: left; 
-       padding: 10;
-	
-}
-
-.home{
-	font-size: 1.5em;
-        width: 200px;   
-        height: 200px;
-         margin: auto;
-        float: left; 
-       padding: 10; 
-}
-
-.profile{
-	font-size: 1.5em;
-        width: 405px;   
-        height: 200px;
-         margin: auto;
-        float: left; 
-       padding: 10;
-       color: #0a0324; 
-}
-*/
+/* design intentionally made horrible to see who doesn't change it*/
 
 body {
-  font-family: Sans-seifs;
+  font-family: ui-rounded;
   font-size: 1.5em;   
+}
+
+body  {
+  background-image: url("paper.gif");
+  background-color: #ffe6e6;
+}
+
+.monospace {
+  font-family: ui-rounded;
 }
 
 ul[class="nav"]{
@@ -139,7 +19,7 @@ ul[class="nav"]{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color:  #688dd2;
+  background-color: #09184c;
 }
 
 .nav > li {
@@ -148,14 +28,16 @@ ul[class="nav"]{
 
 .nav > li a {
   display: block;
-  color: #030008;
+  color: #ffffff;
   text-align: center;
   padding: 16px;
   text-decoration: none;
+  border-style: outset;
 }
 
 .nav > li a:hover {
-  background-color: #da9898;
+  background-color: #09184c;
+  
 }
 
 .register{ 
@@ -195,30 +77,3 @@ ul[class="nav"]{
        padding: 10; 
 }
 
-=======
-input:nth-of-type(1) {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-
-input:nth-of-type(2) {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-
-input:nth-of-type(3) {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-
-input:nth-of-type(4) {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-
-input:nth-of-type(5) {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-   color: black;
-}
->>>>>>> 1c442e501acd8a1ad10ca5aae5f7346ef884cc26
