@@ -18,7 +18,7 @@
     <option value = "world">world</option>
   </select>
   <label>Balance</label>
-  <input type="number" min="1.00" name="balance" value="<?php echo $result["balance"];?>" />
+  <input type="number" min="5.00" name="balance" value="<?php echo $result["balance"];?>" />
 	<input type="submit" name="save" value="Create"/>
 </form>
 
