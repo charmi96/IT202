@@ -1,6 +1,7 @@
+  
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
-<?php 
 
+<?php
     //Note: we have this up here, so our update happens before our get/fetch
     //that way we'll fetch the updated data and have it correctly reflect on the form below
     //As an exercise swap these two and see how things change
@@ -56,7 +57,7 @@
                 }
             }
             if ($inUse > 0) {
-                echo "Username already in use";
+                flash("Username already in use");
                 //for now we can just stop the rest of the update
                 $isValid = false;
             }
@@ -71,13 +72,14 @@
             $r = $stmt->execute([":id" => get_user_id()]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC); //added 
             $password_hash_from_db = $result["password"]; //added
-
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
             
 
             if ($r && password_verify($_POST["original"], $password_hash_from_db)) {
 
-                $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
-                $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);//addded && and after - 
+                $stmt = $db->prepare("UPDATE Users set email = :email, username= :username, firstName= :firstName, lastName = :lastName where id = :id");
+                $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id(), ":firstName"=>$firstName, ":lastName"=>$lastName]);//addded && and after - 
 
                 if (!empty($_POST["password"]) && !empty($_POST["confirm"] && !empty($_POST["original"]))) {
                     if ($_POST["password"] == $_POST["confirm"]) {
@@ -86,37 +88,41 @@
                         $stmt = $db->prepare("UPDATE Users set password = :password where id = :id");
                         $r = $stmt->execute([":id" => get_user_id(), ":password" => $hash]);
                         if ($r) {
-                            echo "Reset Password";
+                            flash("Reset Password");
                         }
                         else {
-                            echo "Error resetting password";
+                            flash("Error resetting password");
                         }
                         //this one we'll do separate
                     }
-                    echo "Updated profile";
+                    flash("Updated profile");
                 }
                 else {
-                    echo "Error updating profile";
+                    flash("Error updating profile");
                 }
             //password is optional, so check if it's even set6
             //if so, then check if it's a valid reset request
             //fetch/select fresh data in case anything changed
-            $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
+            $stmt = $db->prepare("SELECT email, username, firstName, lastName from Users WHERE id = :id LIMIT 1");
             $stmt->execute([":id" => get_user_id()]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result) {
                 $email = $result["email"];
                 $username = $result["username"];
+                $firstName = $result["firstName"];
+                $lastName = $result["lastName"];
                 //let's update our session too
                 $_SESSION["user"]["email"] = $email;
                 $_SESSION["user"]["username"] = $username;
+                $_SESSION["user"]["firstName"] = $firstName;
+                $_SESSION["user"]["lastName"] = $lastName;
             }
             else {
                 
             }
         }
         else {
-            echo "Invalid Password";
+            flash("Invalid Password");
         }
     
 
@@ -133,6 +139,11 @@
             <input type="email" name="email" value="<?php safer_echo(get_email()); ?>"/>
             <label for="username">Username</label>
             <input type="text" maxlength="60" name="username" value="<?php safer_echo(get_username()); ?>"/>
+
+            <label for="firstName">First Name</label>
+            <input type="text" maxlength="60" name="firstName" value="<?php safer_echo(get_firstName()); ?>"/>
+            <label for="lastName">Last Name</label>
+            <input type="text" maxlength="60" name="lastName" value="<?php safer_echo(get_lastName()); ?>"/>
             <!-- DO NOT PRELOAD PASSWORD-->
             <label for="ogpw">Current Password</label> <!-- Added by dan -->
             <input type="password" name="original" id="ogpw" /> <!-- Added by dan -->
@@ -140,8 +151,7 @@
             <input type="password" name="password"/>
             <label for="cpw">Confirm Password</label>
             <input type="password" name="confirm"/>
-            <input type="submit" name="saved" value="Save Profile"/>
+            <input class="btn btn-primary" type="submit" name="saved" value="Save Profile"/>
         </form>
     </div>
-
-<?php require(__DIR__ . "/partials/flash.php");
+    <?php require(__DIR__ . "/partials/flash.php");
