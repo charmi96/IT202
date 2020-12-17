@@ -16,11 +16,11 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li><a href="<?php echo getURL("testFiles/test_list_accounts.php");?>">View Accounts</a></li>
         <?php endif; ?>
     <?php if (is_logged_in()): ?>
-        <li><a href="<?php echo getURL("profile.php");?>">Profile</a></li>
-        <li><a href="<?php echo getURL("logout.php");?>">Logout</a></li>
         <li><a href="<?php echo getURL("accounts/my_accounts.php");?>">Account Activity</a></li>
         <li><a href="<?php echo getURL("accounts/create_transactions.php");?>">Make a Transaction</a></li>
         <li><a href="<?php echo getURL("accounts/send.php");?>">Zelle</a></li>
+	<li><a href="<?php echo getURL("profile.php");?>">Profile</a></li>
+        <li><a href="<?php echo getURL("logout.php");?>">Logout</a></li>
     <?php endif; ?>
 </ul>
 </nav>
