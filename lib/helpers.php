@@ -7,6 +7,57 @@ function is_logged_in() {
     return isset($_SESSION["user"]);
 }
 
+function is_deactivated($userID){
+    $db = getDB();
+    $stmt = $db->prepare("SELECT active FROM Users WHERE Users.id = :id");
+    $r = $stmt->execute([
+        ":id"=>$userID
+    ]);  
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);    
+    $status = $result["active"];
+
+    if($status == 1){
+        return true; 
+    }
+    elseif($status == 0){
+        return false;
+    }
+}
+
+function is_activeAccount($accID){
+    $db = getDB();
+    $stmt = $db->prepare("SELECT active FROM Accounts WHERE id = :id");
+    $r = $stmt->execute([
+        ":id"=>$accID
+    ]);  
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);    
+    $status = $result["active"];
+
+    if($status == 1){
+        return true; 
+    }
+    elseif($status == 0){
+        return false;
+    }
+}
+
+function is_frozen($accID){
+    $db = getDB();
+    $stmt = $db->prepare("SELECT frozen FROM Accounts WHERE id = :id");
+    $r = $stmt->execute([
+        ":id"=>$accID
+    ]);  
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);    
+    $status = $result["frozen"];
+
+    if($status == 1){
+        return true; 
+    }
+    elseif($status == 0){
+        return false;
+    }
+}
+
 function has_role($role) {
     if (is_logged_in() && isset($_SESSION["user"]["roles"])) {
         foreach ($_SESSION["user"]["roles"] as $r) {
@@ -17,14 +68,6 @@ function has_role($role) {
     }
     return false;
 }
-
-/*
-function get_role(){ //added by Daniel Daszkiewicz, 10/18/2020
-    if (is_logged_in() && isset($_SESSION["user"]["roles"])){
-        return $_SESSION["user"]["roles"];  
-    }
-}
-*/
 function get_username() {
     if (is_logged_in() && isset($_SESSION["user"]["username"])) {
         return $_SESSION["user"]["username"];
@@ -140,6 +183,7 @@ function getDropDown(){
 
 function doBankAction($acc1, $acc2, $amount, $action, $memo)
 {
+    
     $db = getDB();
     $user = get_user_id();
 
@@ -248,32 +292,83 @@ function openAccount($account_number, $balance){
 
     return doBankAction($world_id, $accID, ($balance * -1), $action, $memo);
 }
-/*
-function accountNumberGenerator(){
-    $i = 0;
-    $max = 100;
-    $db = getDB();
-    $user = get_user_id();
-    while($i < $max){
-        $account_number =(string)rand(100000000000,999999999999);
-        $stmt = $db->prepare("INSERT INTO Accounts (account_number, account_type, balance, user_id) VALUES(:account_number, :account_type, :balance, :user)");
-        $r = $stmt->execute([
-            ":account_number" => $account_number,
-            ":account_type"=> $account_type,
-            ":user" => $user,
-            ":balance" => $balance
-        ]);
-    
-        if($r){
-          flash("Created successfully with id: " . $db->lastInsertId());
-        }
-        else{
-          $e = $stmt->errorInfo();
-          flash("Error creating: " . var_export($e, true));
-        }
-    }
-*/
-//found on https://stackoverflow.com/questions/53047057/how-to-use-php-to-generate-random-10-digit-number-that-begins-with-the-same-two
-//end flash
 
+function savingsApy(){
+	$db = getDB();
+	$numOfMonths = 1;//1 for monthly
+	$stmt = $db->prepare("SELECT id, apy, balance FROM Accounts WHERE account_type = 'saving' AND IFNULL(nextApy, TIMESTAMPADD(MONTH,:months,opened_date)) <= current_timestamp"); 
+	$r = $stmt->execute([":months"=>$numOfMonths]);
+	if($r){
+		$accounts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if($accounts){
+			$stmt = $db->prepare("SELECT id FROM Accounts where account_number = '000000000000'");
+			$r = $stmt->execute();
+			if(!$r){
+				flash(var_export($stmt->errorInfo(), true), "danger");
+			}
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			$world_id = $result["id"];
+			foreach($accounts as $account){
+				$apy = $account["apy"];
+				//if monthly divide accordingly
+				$apy /= 12;
+				$balance = (float)$account["balance"];
+				$change = $balance * $apy;
+				//see https://github.com/MattToegel/IT202/blob/Fall2019/Section16/sample_transactions.php
+				//last column added supports $memo which my example in the link above doesn't support
+				doBankAction($world_id, $account["id"], ($change * -1), "interest", "APY Calc");
+				
+				$stmt = $db->prepare("UPDATE Accounts set balance = (SELECT IFNULL(SUM(amount),0) FROM Transactions WHERE act_src_id = :id), nextApy = TIMESTAMPADD(MONTH,:months,current_timestamp) WHERE id = :id");
+				$r = $stmt->execute([":id"=>$account["id"], ":months"=>$numOfMonths]);
+				if(!$r){
+					flash(var_export($stmt->errorInfo(), true), "danger");
+				}
+			}
+		}
+	}
+	else{
+		flash(var_export($stmt->errorInfo(), true), "danger");
+	}
+}
+
+function loanApy(){
+	$db = getDB();
+	$numOfMonths = 1;//1 for monthly
+	$stmt = $db->prepare("SELECT id, apy, balance FROM Accounts WHERE account_type = 'loan' AND IFNULL(nextApy, TIMESTAMPADD(MONTH,:months,opened_date)) <= current_timestamp"); 
+	$r = $stmt->execute([":months"=>$numOfMonths]);
+	if($r){
+		$accounts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if($accounts){
+			$stmt = $db->prepare("SELECT id FROM Accounts where account_number = '000000000000'");
+			$r = $stmt->execute();
+			if(!$r){
+				flash(var_export($stmt->errorInfo(), true), "danger");
+			}
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			$world_id = $result["id"];
+			foreach($accounts as $account){
+				$apy = $account["apy"];
+				//if monthly divide accordingly
+				$apy /= 12;
+				$balance = (float)$account["balance"];
+                $change = $balance * $apy;
+                $change  = $change * -1;
+				//see https://github.com/MattToegel/IT202/blob/Fall2019/Section16/sample_transactions.php
+				//last column added supports $memo which my example in the link above doesn't support
+				doBankAction($account["id"], $world_id, ($change * -1), "interest", "APY Calc");
+				
+				$stmt = $db->prepare("UPDATE Accounts set balance = (SELECT IFNULL(SUM(amount),0) FROM Transactions WHERE act_src_id = :id), nextApy = TIMESTAMPADD(MONTH,:months,current_timestamp) WHERE id = :id");
+				$r = $stmt->execute([":id"=>$account["id"], ":months"=>$numOfMonths]);
+				if(!$r){
+					flash(var_export($stmt->errorInfo(), true), "danger");
+				}
+			}
+		}
+	}
+	else{
+		flash(var_export($stmt->errorInfo(), true), "danger");
+	}
+}
 ?>
+
+<?php require(__DIR__ . "/../partials/flash.php");
